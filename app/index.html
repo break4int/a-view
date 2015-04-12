@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Americano - App</title>
+	
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	
+	<link rel="stylesheet" type="text/css" href="../asset/bootstrap-3.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../asset/font-awesome-4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../asset/admin-lte-1.3/AdminLTE.css" />
+	<link rel="stylesheet" type="text/css" href="./css/a-app.css" />
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+	<![endif]-->
+	
+	<style>	
+		@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+		.box {margin-bottom:5px}
+	</style>
+</head>
+<body class="skin-yellow fixed">
+	<!-- header logo: style can be found in header.less -->
+	<header data-ng-controller="HeaderController as header" class="header">
+		<div class="logo">
+			<span data-ng-click="movePartnerList()"> 
+				Americano
+			</span> 
+			<span data-ng-click="moveTicketListPage();" class="left-header">
+				<span class="glyphicon glyphicon-user icon"><span class="label label-black">10</span></span> 
+			</span>
+			<span data-ng-click="moveSearchListPage();" class="right-header">
+				<span class="glyphicon glyphicon-search icon"></span>
+			</span>
+		</div>
+		<!-- Header Navbar: style can be found in header.less -->
+		<!-- 
+		<nav class="navbar navbar-static-top" role="navigation">
+			<a data-ng-click="toggleSideBar($event);" href="javascript:void(0);" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+			<div class="navbar-right">
+				<ul class="nav navbar-nav">
+					<li class="menu" data-ng-click="moveTicketListPage();">
+						<a href="javascript:void(0);">
+							<i class="glyphicon glyphicon-user"></i>
+							<span class="label label-warning">10</span>
+						</a>
+					</li>
+					<li class="menu" data-ng-click="moveSearchListPage($event);">
+						<a href="javascript:void(0);">
+							<i class="glyphicon glyphicon-search"></i>
+						</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav" style="display:none;">
+					<li class="menu">
+						<div class="form-group" style="margin:9px 0 0 5px;">
+							<input type="text" placeholder="Search" class="form-control">
+						</div>
+					</li>
+					<li class="menu" data-ng-click="backSearchCancel($event);">
+						<a href="javascript:void(0);">취소</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		-->
+	</header>
+	
+	<div class="wrapper row-offcanvas row-offcanvas-left">
+		
+		<!-- Left side column. contains the logo and sidebar -->
+            <aside data-ng-controller="SidebarController as sidebar"  class="left-side sidebar-offcanvas">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- Sidebar user panel -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img src="./image/avatar04.png" class="img-circle" alt="User Image" />
+                        </div>
+                        <div class="pull-left info">
+                            <p>Hello, Jane</p>
+
+                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        </div>
+                    </div>
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu">
+                        <li class="active">
+                            <a href="index.html">
+                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="pages/widgets.html">
+                                <i class="fa fa-th"></i> <span>Widgets</span> <small class="badge pull-right bg-green">new</small>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-bar-chart-o"></i>
+                                <span>Charts</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="pages/charts/morris.html"><i class="fa fa-angle-double-right"></i> Morris</a></li>
+                                <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Flot</a></li>
+                                <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline charts</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+		
+		<!-- Right side column. Contains the navbar and content of the page -->
+		<aside data-ng-controller="partnerListController as partnerList" class="right-side" style="display:none">
+			<div data-ng-repeat="item in array" data-partner-repeat-directive class="row" style="margin-top:5px;">
+				<div class="col-md-12">
+				
+					<!-- small box -->
+					<div class="small-box bg-aqua-x">
+						<div class="inner" style="padding:0">
+							<div id="carousel-partner-captions-{{item.id}}-t" class="carousel slide" data-ng-click="movePartnerDetailPage($event, item.id);">
+								
+						        <div class="carousel-inner">
+									<div class="item active">
+										<img data-src="holder.js/100%x150/auto/random" src="data:image/png;base64,">
+									</div>
+									<div class="item">
+										<img data-src="holder.js/100%x150/auto/random" src="data:image/png;base64,">
+									</div>
+								</div>
+								<div class="carousel-front" >
+								</div>
+								<div class="carousel-front-text" >
+									<span class="text-left">{{item.name}} </span><br>
+									<span class="text-left">{{item.place}} | {{item.description}}</span>
+								</div>
+								<a class="carousel-control" href="#carousel-partner-captions-{{item.id}}-t" data-slide="prev">
+									<span class="icon-prev"></span>
+								</a>
+								<a class="carousel-control" style="right: 0; left: auto;" href="#carousel-partner-captions-{{item.id}}-t" data-slide="next">
+									<span class="icon-next"></span>
+								</a>
+							</div>
+						</div>
+						<div class="" data-ng-click="movePartnerDetailPage($event, item.id);">
+							<div class="sort-highlight text-center">
+								<span class="help-block ">현재 <strong>{{item.waitCount}}</strong> 팀 대기중 입니다. <i class="fa fa-arrow-circle-right"></i></span>
+								
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</aside>
+		
+		<aside data-ng-controller="searchListController as searchList" class="right-side" style="display:none">
+			<div class="row" style="margin-top:5px;">
+				<div class="col-md-12">
+					hello americano!!
+				</div>
+			</div>
+		</aside>
+		
+		<aside data-ng-controller="partnerDetailController as partnerDetail" class="right-side" style="display: none">
+			<ul class="nav nav-pills  nav-background" style="" id="myTab" >
+				<li class="active nav-justified1" ><a href="#Info" data-toggle="tab" class="">정보</a></li>
+				<li class="nav-justified1"><a href="#Menu" data-toggle="tab" class="">메뉴</a></li>
+				<li class="nav-justified1"><a href="#Map" data-toggle="tab" class="">지도</a></li>
+			</ul>
+			<div class="tab-content">
+				<!-- 정보 START-->
+				<div class="tab-pane active" id="Info">
+					<div class="row bs-example">
+						<div id="carousel-example-captions" class="carousel slide bs-docs-carousel-example">
+							<ol class="carousel-indicators">
+								<li data-target="#carousel-example-captions" data-slide-to="0" class="active"></li>
+								<li data-target="#carousel-example-captions" data-slide-to="1"></li>
+								<li data-target="#carousel-example-captions" data-slide-to="2"></li>
+					        </ol>
+					        <div class="carousel-inner">
+								<div class="item active">
+									<img data-src="holder.js/100%x200/auto/lava" src="data:image/png;base64,">
+								</div>
+								<div class="item">
+									<img data-src="holder.js/100%x200/auto/vine" src="data:image/png;base64,">
+								</div>
+								<div class="item">
+									<img data-src="holder.js/100%x200/auto/sky" src="data:image/png;base64,">
+									<div class="carousel-caption">
+										<h3>Third slide label</h3>
+										<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+									</div>
+								</div>
+							</div>
+							<a class="left carousel-control" href="#carousel-example-captions" data-slide="prev">
+								<!-- 	<span class="icon-prev"></span> -->
+							</a>
+							<a class="right carousel-control" href="#carousel-example-captions" data-slide="next">
+								<!--  <span class="icon-next"></span> -->
+							</a>
+						</div>
+					</div>
+					<div class="">
+						<div class="bg-gray  text-center">
+							<span class="help-block">현재 <strong>{{partner.waitCount}}</strong>팀이 대기 중 입니다.</span>
+						</div>
+						<div class="col-xs-12 row" style="margin-left: 3px">
+							<div class="tb">
+								<div class="tb-row">
+									<div class="tb-cell-text" style="font-weight: 600">{{partner.name}}</div>
+								</div>
+								<div class="tb-row">
+									<div class="tb-cell-text">{{partner.description}}</div>
+								</div>
+							</div>
+							<div class="tb">
+								<div class="tb-row">
+									<div class="tb-cell tb-th">영업시간</div>
+									<div class="tb-cell">{{partner.operatingHour}}</div>
+								</div>
+								<div class="tb-row">
+									<div class="tb-cell tb-th">전화번호</div>
+									<div class="tb-cell">{{partner.telephone}}</div>
+								</div>
+								<div class="tb-row">
+									<div class="tb-cell tb-th">영업시간111</div>
+									<div class="tb-cell ">{{partner.description}}</div>
+								</div>
+							</div>
+						</div>
+						<!-- 정보 END-->
+					</div>
+				</div>
+				<div class="tab-pane" id="Menu">
+					<!-- 메뉴 START-->
+					<div class="col-md-12">
+						<h5 class="text-muted">메뉴</h5>
+							{{partner.menu}}<br>
+							{{jsonmsg}}
+					</div>
+					<!-- 메뉴 END-->
+				</div>
+				<div class="tab-pane" id="Map">
+					<!-- 지도 START-->
+					<div class="col-md-12">
+						<p>map Image</p>
+					</div>
+					<!-- 지도 END-->
+				</div>
+			</div>
+		</aside>
+		
+		<aside data-ng-controller="ticketListController as ticketList" class="right-side" style="display:none">
+		<br>
+			<div class="container">
+				<div class="well text-center">
+					현재 번호 : <span id="nowNumber" class="h1">{{ticket.nowNumber}}</span> <a data-ng-click="refreshNowNumber(ticket.partnerId, ticket.orderType)"><span class="glyphicon glyphicon-refresh"></span></a><br>
+					대기 번호 : <span id="orderNumber" class="h2">{{ticket.orderNumber}}</span><br>
+					<span>{{ticket.partnerName}}</span><br>
+				</div>
+			</div>
+			
+			<div data-ng-repeat="item in ticketList">
+				<div class="col-md-12 sort-highlight ">
+					<a data-ng-click="refreshNowNumber(item.partnerId)"><span class="strong">{{item.partnerName}}</span></a><br>
+					<span class="text-muted">{{item.date}}</span><br>
+					<span class="text-muted">대기시간 : {{item.waitingTime}}</span><br>
+				</div>
+			</div>
+		</aside>
+	</div>
+	<script data-main="./js/initialize" src="../asset/require/require.min.js"></script>
+</body>
+</html>
