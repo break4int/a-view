@@ -1,8 +1,8 @@
 define(['jquery', 'angular'], function($, angular) {
 	
 	var $injector = angular.injector(['americano']);
-	var $config = $injector.get('config');
-	var $americano = $config.americano;
+	var $global = $injector.get('global');
+	var $americano = $global.$americano;
 	
 	/*
      * SIDEBAR MENU

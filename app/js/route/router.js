@@ -1,8 +1,11 @@
-define(['jquery', 'angular', 'Paradox'], function($, angular, Paradox) {
+define(['jquery', 'angular', 'Paradox', 'headerController'
+        , 'partnerListController', 'partnerDetailController'
+        , 'searchListController', 'ticketListController']
+, function($, angular, Paradox) {
 	
 	var $injector = angular.injector(['americano']);
-	var $config = $injector.get('config');
-	var $americano = $config.americano;
+	var $global = $injector.get('global');
+	var $americano = $global.$americano;
 	var $v_currentMode = null;
 	var paradox = Paradox.getInstance();
 	
@@ -60,7 +63,9 @@ define(['jquery', 'angular', 'Paradox'], function($, angular, Paradox) {
 		home : function() {
 			
 			var currentIndex = paradox.getCurrentHistoryIndex();
-			paradox.go(currentIndex * -1);
+			if (currentIndex > 0) {
+				paradox.go(currentIndex * -1);	
+			}
 		}
 	}
 });

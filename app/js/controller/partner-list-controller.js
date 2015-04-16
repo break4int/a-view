@@ -1,8 +1,8 @@
-define(['jquery', 'angular', 'router', 'holder'], function($, angular, router, holder) {
+define(['jquery', 'angular', 'holder'], function($, angular, holder) {
 	
 	var $injector = angular.injector(['americano']);
-	var $config = $injector.get('config');
-	var $americano = $config.americano;
+	var $global = $injector.get('global');
+	var $americano = $global.$americano;
 	var $v_element = null;
 	
 	
@@ -10,8 +10,8 @@ define(['jquery', 'angular', 'router', 'holder'], function($, angular, router, h
 		return function(scope, element, attrs) {
 //			angular.element(element).css('color','blue');
 			if (scope.$last){
-				holder.run();
 				window.holder = holder;
+				holder.run();
 			}
 		};
 	});
@@ -35,7 +35,7 @@ define(['jquery', 'angular', 'router', 'holder'], function($, angular, router, h
 			
 			if (!$($v_element).find('ol.carousel-indicators li, a.carousel-control, span.icon-prev, span.icon-next').is(e.target)) {
 				
-				router.push('partnerDetail', id);
+				require('router').push('partnerDetail', id);
 			}
 		}
     }]);
@@ -44,14 +44,15 @@ define(['jquery', 'angular', 'router', 'holder'], function($, angular, router, h
 		show : function() {
 			
 			var $injector = angular.injector(['americano']);
-			var $config = $injector.get('config');
+			var $global = $injector.get('global');
 			
-			if ($config.currentView != null) {
-				$($config.currentView).hide();
+			if ($global.currentView != null) {
+				$($global.currentView).hide();
 			}
 			
-			$config.currentView = $v_element;
-			$($v_element).show();
+			$global.currentView = $v_element;
+			$v_element.css('display', 'block');
+			setTimeout(function(h){h.run();}, 10, holder);
 		}
 	}
 });

@@ -1,8 +1,8 @@
-define(['jquery', 'angular', 'router', 'sidebarController'], function($, angular, router, sidebarController) {
+define(['jquery', 'angular', 'sidebarController'], function($, angular, sidebarController) {
 	
 	var $injector = angular.injector(['americano']);
-	var $config = $injector.get('config');
-	var $americano = $config.americano;
+	var $global = $injector.get('global');
+	var $americano = $global.$americano;
 	var $v_element = null;
 	
 	$americano.controller('HeaderController', ['$scope', '$element', function($scope, $element) {
@@ -11,24 +11,24 @@ define(['jquery', 'angular', 'router', 'sidebarController'], function($, angular
 		
 		$scope.movePartnerList = function(){
 			
-			router.home();
+			require('router').home();
 		}
 		
 		$scope.moveTicketListPage = function() {
 			
-			router.push('ticketList');
+			require('router').push('ticketList');
 		}
 		
 		$scope.moveSearchListPage = function(e) {
 			
 //			$(e.target).parents('ul.nav.navbar-nav').hide().siblings().show();
-			router.push('searchList');
+			require('router').push('searchList');
 		}
 		
 		$scope.backSearchCancel = function(e) {
 			
 //			$(e.target).parents('ul.nav.navbar-nav').hide().siblings().show();
-			router.back();
+			require('router').back();
 		}
 		
 		$scope.toggleSideBar = function(e) {

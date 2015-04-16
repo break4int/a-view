@@ -31,7 +31,7 @@
 	<header data-ng-controller="HeaderController as header" class="header">
 		<div class="logo">
 			<span data-ng-click="movePartnerList()"> 
-				Americano - Test
+				Americano
 			</span> 
 			<span data-ng-click="moveTicketListPage();" class="left-header">
 				<span class="glyphicon glyphicon-user icon"><span class="label label-black">10</span></span> 
@@ -126,8 +126,8 @@
 		
 		<!-- Right side column. Contains the navbar and content of the page -->
 		<aside data-ng-controller="partnerListController as partnerList" class="right-side" style="display:none">
-			<div data-ng-repeat="item in array" data-partner-repeat-directive class="row" style="margin-top:5px;">
-				<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-12" data-ng-repeat="item in array" data-partner-repeat-directive>
 				
 					<!-- small box -->
 					<div class="small-box bg-aqua-x">
@@ -142,11 +142,10 @@
 										<img data-src="holder.js/100%x150/auto/random" src="data:image/png;base64,">
 									</div>
 								</div>
-								<div class="carousel-front" >
-								</div>
+								
 								<div class="carousel-front-text" >
-									<span class="text-left">{{item.name}} </span><br>
-									<span class="text-left">{{item.place}} | {{item.description}}</span>
+									<div class="text-right">{{item.name}} </div>
+									<div class="text-right">{{item.place}} | {{item.description}}</div>
 								</div>
 								<a class="carousel-control" href="#carousel-partner-captions-{{item.id}}-t" data-slide="prev">
 									<span class="icon-prev"></span>
@@ -156,12 +155,17 @@
 								</a>
 							</div>
 						</div>
-						<div class="" data-ng-click="movePartnerDetailPage($event, item.id);">
+						<div class="small-box-footer" style="padding:0;" data-ng-click="movePartnerDetailPage($event, item.id);">
+							<div class="sort-highlight text-center">
+								<span class="help-block">현재 <strong>1</strong> 팀 대기중 입니다.<i class="fa fa-arrow-circle-right"></i></span>
+							</div>
+						</div>
+						<!-- <div class="" data-ng-click="movePartnerDetailPage($event, item.id);">
 							<div class="sort-highlight text-center">
 								<span class="help-block ">현재 <strong>{{item.waitCount}}</strong> 팀 대기중 입니다. <i class="fa fa-arrow-circle-right"></i></span>
 								
 							</div>
-						</div>
+						</div> -->
 					</div>
 					
 				</div>
@@ -169,7 +173,7 @@
 		</aside>
 		
 		<aside data-ng-controller="searchListController as searchList" class="right-side" style="display:none">
-			<div class="row" style="margin-top:5px;">
+			<div class="row">
 				<div class="col-md-12">
 					hello americano!!
 				</div>
@@ -284,6 +288,6 @@
 			</div>
 		</aside>
 	</div>
-	<script data-main="./js/initialize" src="../asset/require/require.min.js"></script>
+	<script data-main="./js/initialize" src="../asset/require-2.1.17/require.min.js"></script>
 </body>
 </html>

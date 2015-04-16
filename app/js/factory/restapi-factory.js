@@ -1,14 +1,15 @@
 define(['jquery'], function($) {
 	
 	var $injector = angular.injector(['americano']);
-	var $config = $injector.get('config');
-	var $americano = $config.americano;
+	var $global = $injector.get('global');
+	var config = $injector.get('config');
+	var $americano = $global.$americano;
 	
-	$americano.factory('restAPIFactory', ['$resource', '$httpBackend', 'config', function($resource, $httpBackend, $config) {
+	$americano.factory('restAPIFactory', ['$resource', '$httpBackend', 'config', function($resource, $httpBackend, config) {
 
-		var prefix = $config.apiPrefix;
+		var baseUrl = config.BASE_URL;
 		
-		var partner = $resource(prefix + '/partner/:partnerId',
+		var partner = $resource(baseUrl + '/partner/:partnerId',
 				{
 					lon : '@lon',
 					lat : '@lat',
@@ -26,7 +27,7 @@ define(['jquery'], function($) {
 				}
 		);
 		
-		var ticket = $resource(prefix + '/ticket/:ticketId',
+		var ticket = $resource(baseUrl + '/ticket/:ticketId',
 				{
 					ticketId : '@ticketId'
 				},
@@ -36,7 +37,7 @@ define(['jquery'], function($) {
 		);
 		
 		
-		mockup($config, $httpBackend);
+		mockup($global, $httpBackend);
 		
 		return {
 			partner : partner,
@@ -44,7 +45,7 @@ define(['jquery'], function($) {
 		}
     }]);
 	
-	function mockup($config, $httpBackend) {
+	function mockup($global, $httpBackend) {
 		
 		// Mock
 //		var $injector = angular.injector(['americano']);
@@ -52,7 +53,7 @@ define(['jquery'], function($) {
 
 		function matchURI(api, uri) {
 			
-			if ($config.apiPrefix + api == uri.split('?')[0]) {
+			if (config.BASE_URL + api == uri.split('?')[0]) {
 				return true;
 			}
 			return false;
@@ -64,7 +65,7 @@ define(['jquery'], function($) {
 			
 			var array = [];
 			
-			for (var i = 0, iMax = 3 ; i < iMax ; i++) {
+			for (var i = 0, iMax = 5 ; i < iMax ; i++) {
 				
 				array.push({
 					id : i,

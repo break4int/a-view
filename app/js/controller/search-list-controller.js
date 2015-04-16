@@ -1,8 +1,8 @@
 define(['jquery', 'angular'], function($, angular) {
 	
 	var $injector = angular.injector(['americano']);
-	var $config = $injector.get('config');
-	var $americano = $config.americano;
+	var $global = $injector.get('global');
+	var $americano = $global.$americano;
 	var $v_element = null;
 	
 	$americano.controller('searchListController', ['$scope', '$element', function($scope, $element) {
@@ -14,13 +14,13 @@ define(['jquery', 'angular'], function($, angular) {
 		show : function() {
 			
 			var $injector = angular.injector(['americano']);
-			var $config = $injector.get('config');
+			var $global = $injector.get('global');
 			
-			if ($config.currentView != null) {
-				$($config.currentView).hide();
+			if ($global.currentView != null) {
+				$($global.currentView).hide();
 			}
 			
-			$config.currentView = $v_element;
+			$global.currentView = $v_element;
 			$($v_element).show();
 		}
 	}

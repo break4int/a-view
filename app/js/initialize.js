@@ -2,7 +2,7 @@ requirejs.config({
 //	urlArgs: 'ts=' + (new Date()).getTime(),
 	baseUrl : './js',
 	paths : {
-		'text': '../../asset/require/text',
+		'text': '../../asset/require-2.1.17/text',
 		'jquery' : '../../asset/jquery-1.11.1/jquery-1.11.1.min',
 		'angular' : '../../asset/angular-1.3.13/angular.min',
 		'ngResource' : '../../asset/angular-1.3.13/angular-resource.min',
@@ -45,26 +45,22 @@ requirejs.config({
 	waitSeconds : 3
 });
 
-requirejs(['jquery', 'angular', 'bootstrap', 'ngResource', 'ngMockE2E', 'holder'], function($, angular, bootstrap) {
+requirejs(['jquery', 'angular', 'bootstrap', 'ngResource', 'ngMockE2E'], function($, angular, bootstrap) {
 	
-	var americano = window.app = angular.module('americano', ['ngResource', 'ngMockE2E']);
+	var $americano = angular.module('americano', ['ngResource', 'ngMockE2E']);
 	
-	americano.constant('config', {
-		americano : americano,
-		currentView : null,
-		apiPrefix : '/americano/api'
+	$americano.constant('global', {
+		$americano : $americano,
+		currentView : null
+	}).constant('config', {
+		BASE_URL : '/americano/api'
 	});
 	
-	// TODO 공통 컴포넌트
-	requirejs(['restAPIFactory', 'headerController'], function(restAPIFactory, headerController) {
-	
-		// FIXME 처음부터 모든 리소스를 로드할 필요 없을것으로 보임  
-		require(['router', 'partnerListController', 'partnerDetailController', 'searchListController', 'ticketListController'], function(router, partnerListController, partnerDetailController, searchListController, ticketListController) {
-			
-			angular.bootstrap(document, ['americano']);
-			
-			var mode = (location.search != null && location.search.trim() != '') ? location.search.replace('?', '') : 'partnerList';
-			router.init(mode);
-		});
+	require(['router', 'restAPIFactory'], function(router) {
+		
+		angular.bootstrap(document, ['americano']);
+		
+		var mode = (location.search != null && location.search.trim() != '') ? location.search.replace('?', '') : 'partnerList';
+		router.init(mode);
 	});
 });
