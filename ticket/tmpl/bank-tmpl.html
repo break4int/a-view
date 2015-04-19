@@ -1,0 +1,36 @@
+<div id="bank" data-ng-controller="bankController" class="bank-ticket" 
+	style="position:relative;width:100%;height:300px;border:1px solid black;text-align:center;padding:30px 20px;">
+	<div class="data-form">
+		<div class="button-form">
+			<div class="form-group col-xs-4">
+				<button class="form-control btn btn-primary btn-block" data-ng-click='buttonHandler($event, "deposit");'
+					style="position:relative;border:1px;width:100px;height:100px;">
+					<div>예금	</div>
+					<div>대기인수</div>
+					<div data-ng-model="deposit_wait_cnt">{{deposit_wait_cnt}}</div>
+				</button>
+			</div>
+			<div class="form-group col-xs-2">
+			</div>
+			<div class="form-group col-xs-4">
+				<button class="form-control btn btn-primary btn-block" data-ng-click='buttonHandler($event, "loans");'
+					style="position:relative;border:1px;width:100px;height:100px;">
+					<div>대출</div>
+					<div>대기인수</div>
+					<div data-ng-model="loans_wait_cnt">{{loans_wait_cnt}}</div>
+				</button>
+			</div>
+		</div>
+		<div class="nfctag-form">
+				NFC 태깅 OR 번호발급 버튼을 누르세요
+			<div data-ng-model="display_wait_cnt">대기인원 : {{display_wait_cnt}}</div>
+			<br/>
+			<div>
+				<button class="form-control btn btn-primary btn-block" data-ng-click='buttonHandler($event, "print");'
+					style="position:relative;border:1px">
+					번호발급
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
