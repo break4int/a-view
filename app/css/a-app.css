@@ -12,6 +12,14 @@ h1, h2, h3, h4, h5, h6,
 	background: #ffffff;
 }
 
+body > .header .navbar {
+	margin-left:0;
+}
+
+.small-box > .small-box-footer {
+	z-index:0;
+}
+
 body > .header .logo {
 	/* color: #2d2d2d; */
 	color: #3b1e1e;
@@ -110,7 +118,8 @@ body > .header > .logo >  .right-header {
   background-color: #ababab;
 }
 .skin-yellow .navbar .nav a {
-  color: rgba(255, 255, 255, 0.8);
+  /*color: rgba(255, 255, 255, 0.8);*/
+  color: #3b1e1e;
 }
 .skin-yellow .navbar .nav > li > a:hover,
 .skin-yellow .navbar .nav > li > a:active,
@@ -126,9 +135,11 @@ body > .header > .logo >  .right-header {
 }
 .skin-yellow .navbar .sidebar-toggle .icon-bar {
   background: rgba(255, 255, 255, 0.8);
+  background: #3b1e1e !important;
 }
 .skin-yellow .navbar .sidebar-toggle:hover .icon-bar {
   background: #f6f6f6 !important;
+  background: #3b1e1e !important;
 }
 /* skin-yellow logo */
 .skin-yellow .logo {

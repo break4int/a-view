@@ -11,7 +11,7 @@ define(['jquery', 'angular', 'holder'], function($, angular, holder) {
 //			angular.element(element).css('color','blue');
 			if (scope.$last){
 				window.holder = holder;
-				holder.run();
+				setTimeout(function(h){h.run();}, 10, holder);
 			}
 		};
 	});
@@ -51,8 +51,7 @@ define(['jquery', 'angular', 'holder'], function($, angular, holder) {
 			}
 			
 			$global.currentView = $v_element;
-			$v_element.css('display', 'block');
-			setTimeout(function(h){h.run();}, 10, holder);
+			$v_element.show();
 		}
 	}
 });

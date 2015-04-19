@@ -28,7 +28,7 @@
 </head>
 <body class="skin-yellow fixed">
 	<!-- header logo: style can be found in header.less -->
-	<header data-ng-controller="HeaderController as header" class="header">
+	<!-- <header data-ng-controller="HeaderController as header" class="header">
 		<div class="logo">
 			<span data-ng-click="movePartnerList()"> 
 				Americano
@@ -40,8 +40,7 @@
 				<span class="glyphicon glyphicon-search icon"></span>
 			</span>
 		</div>
-		<!-- Header Navbar: style can be found in header.less -->
-		<!-- 
+		Header Navbar: style can be found in header.less
 		<nav class="navbar navbar-static-top" role="navigation">
 			<a data-ng-click="toggleSideBar($event);" href="javascript:void(0);" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
 				<span class="sr-only">Toggle navigation</span>
@@ -75,7 +74,41 @@
 				</ul>
 			</div>
 		</nav>
-		-->
+	</header> -->
+	<header data-ng-controller="HeaderController as header" class="header">
+		<!-- Header Navbar: style can be found in header.less -->
+		<nav class="navbar navbar-static-top" role="navigation">
+			<div class="logo">
+				<span data-ng-click="movePartnerList()"> 
+					Americano
+				</span> 
+			</div>
+			<a data-ng-click="toggleSideBar($event);" href="javascript:void(0);" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button" style="position: absolute; top: 0;">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+			<div class="navbar-right" style="position: absolute; top: 0; right:0;">
+				<ul class="nav navbar-nav">
+					<li class="menu" data-ng-click="moveSearchListPage($event);">
+						<a href="javascript:void(0);">
+							<i class="glyphicon glyphicon-search"></i>
+						</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav" style="display:none;">
+					<li class="menu">
+						<div class="form-group" style="margin:9px 0 0 5px;">
+							<input type="text" placeholder="Search" class="form-control">
+						</div>
+					</li>
+					<li class="menu" data-ng-click="backSearchCancel($event);">
+						<a href="javascript:void(0);">취소</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
 	</header>
 	
 	<div class="wrapper row-offcanvas row-offcanvas-left">
@@ -99,14 +132,15 @@
                     <ul class="sidebar-menu">
                         <li class="active">
                             <a href="index.html">
-                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                                <i class="fa fa-building-o"></i> <span>가맹점</span>
                             </a>
                         </li>
                         <li>
                             <a href="pages/widgets.html">
-                                <i class="fa fa-th"></i> <span>Widgets</span> <small class="badge pull-right bg-green">new</small>
+                                <i class="fa fa-ticket"></i> <span>티켓</span> <small class="badge pull-right bg-green">new</small>
                             </a>
                         </li>
+                        <!-- 
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-bar-chart-o"></i>
@@ -119,6 +153,7 @@
                                 <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline charts</a></li>
                             </ul>
                         </li>
+                         -->
                     </ul>
                 </section>
                 <!-- /.sidebar -->
@@ -130,9 +165,9 @@
 				<div class="col-md-12" data-ng-repeat="item in array" data-partner-repeat-directive>
 				
 					<!-- small box -->
-					<div class="small-box bg-aqua-x">
+					<div class="small-box bg-aqua-x" data-ng-click="movePartnerDetailPage($event, item.id);">
 						<div class="inner" style="padding:0">
-							<div id="carousel-partner-captions-{{item.id}}-t" class="carousel slide" data-ng-click="movePartnerDetailPage($event, item.id);">
+							<div id="carousel-partner-captions-{{item.id}}-t" class="carousel slide">
 								
 						        <div class="carousel-inner">
 									<div class="item active">
@@ -155,19 +190,12 @@
 								</a>
 							</div>
 						</div>
-						<div class="small-box-footer" style="padding:0;" data-ng-click="movePartnerDetailPage($event, item.id);">
+						<div class="small-box-footer" style="padding:0;">
 							<div class="sort-highlight text-center">
 								<span class="help-block">현재 <strong>1</strong> 팀 대기중 입니다.<i class="fa fa-arrow-circle-right"></i></span>
 							</div>
 						</div>
-						<!-- <div class="" data-ng-click="movePartnerDetailPage($event, item.id);">
-							<div class="sort-highlight text-center">
-								<span class="help-block ">현재 <strong>{{item.waitCount}}</strong> 팀 대기중 입니다. <i class="fa fa-arrow-circle-right"></i></span>
-								
-							</div>
-						</div> -->
 					</div>
-					
 				</div>
 			</div>
 		</aside>
@@ -288,6 +316,12 @@
 			</div>
 		</aside>
 	</div>
+	<span class="fa-stack fa-2x" style="position:fixed; bottom:50px; right:50px; width:50px; height:50px; border-radius:50%;">
+		<i class="fa fa-circle fa-stack-2x" style="color: #ffe303;"></i>
+		<i class="fa fa-ticket fa-stack-1x fa-inverse" style="color:#3b1e1e;"></i>
+	</span>
+	
+	
 	<script data-main="./js/initialize" src="../asset/require-2.1.17/require.min.js"></script>
 </body>
 </html>

@@ -1,13 +1,12 @@
-define(['jquery', 'angular', 'Paradox', 'headerController'
+define(['jquery', 'angular', 'paradox', 'headerController'
         , 'partnerListController', 'partnerDetailController'
         , 'searchListController', 'ticketListController']
-, function($, angular, Paradox) {
+, function($, angular, paradox) {
 	
 	var $injector = angular.injector(['americano']);
 	var $global = $injector.get('global');
 	var $americano = $global.$americano;
 	var $v_currentMode = null;
-	var paradox = Paradox.getInstance();
 	
 	return {
 		init : function(mode) {
