@@ -7,7 +7,7 @@ requirejs.config({
 		'angular' : '../../asset/angular-1.3.15/angular.min',
 		'ngResource' : '../../asset/angular-1.3.15/angular-resource.min',
 		'ngMockE2E' : '../../asset/angular-1.3.15/angular-mocks',
-		'ngTouch' : 'https://docs.angularjs.org/angular-touch',//'../../asset/angular-1.3.15/angular-touch.min',
+		'ngTouch' : '../../asset/angular-1.3.15/angular-touch.min',//'https://docs.angularjs.org/angular-touch',
 		'bootstrap' : '../../asset/bootstrap-3.3.1/js/bootstrap.min',
 		'paradox' : '../../asset/paradox-0.7.13/paradox-0.7.13',
 		'holder' : '../../asset/holder/holder',
