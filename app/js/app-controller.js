@@ -132,11 +132,15 @@ define(['jquery', 'angular'], function($, angular) {
 
 		$_element = $element;
 
-		// 전체 윈도우 텐션 방지
-		window.addEventListener('touchmove', function(e) {
-			// e.preventDefault();
-			e.stopPropagation();
-		}, false)
+		$scope.moveHome = function() {
+			
+			require('router').home();
+		}
+		
+		$scope.move = function(next) {
+			
+			require('router').push(next);
+		}
 		
 		$scope.movePartnerList = function(){
 			
