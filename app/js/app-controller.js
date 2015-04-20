@@ -131,6 +131,11 @@ define(['jquery', 'angular'], function($, angular) {
 	$americano.controller('AppController', ['$scope', '$element', function($scope, $element) {
 
 		$_element = $element;
+
+		// 전체 윈도우 텐션 방지
+		window.addEventListener('touchmove', function(e) {
+			e.preventDefault();
+		}, false)
 		
 		$scope.movePartnerList = function(){
 			
