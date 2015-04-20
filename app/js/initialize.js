@@ -13,7 +13,7 @@ requirejs.config({
 		'holder' : '../../asset/holder/holder',
 		'restAPIFactory' : './factory/restapi-factory',
 		'router' : './route/router',
-		'appController' : './controller/app-controller',
+		'appController' : './app-controller',
 		'partnerListController' : './controller/partner-list-controller',
 		'partnerDetailController' : './controller/partner-detail-controller',
 		'searchListController' : './controller/search-list-controller',
