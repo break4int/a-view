@@ -162,10 +162,10 @@
 		<!-- Right side column. Contains the navbar and content of the page -->
 		<aside data-ng-controller="partnerListController as partnerList" class="right-side" style="display:none">
 			<div class="row">
-				<div class="col-xs-12" data-ng-repeat="item in array" data-partner-repeat-directive>
+				<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" data-ng-repeat="item in array" data-partner-repeat-directive>
 				
 					<!-- small box -->
-					<div class="small-box bg-aqua-x" ng-click="movePartnerDetailPage($event, item.id);">
+					<div class="small-box bg-aqua-x" data-ng-click="movePartnerDetailPage($event, item.id);">
 						<div class="inner" style="padding:0">
 							<div id="carousel-partner-captions-{{item.id}}-t" class="carousel slide">
 								
