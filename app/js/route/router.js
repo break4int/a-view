@@ -1,4 +1,4 @@
-define(['jquery', 'angular', 'paradox', 'headerController'
+define(['jquery', 'angular', 'paradox', 'appController'
         , 'partnerListController', 'partnerDetailController'
         , 'searchListController', 'ticketListController']
 , function($, angular, paradox) {
@@ -26,28 +26,28 @@ define(['jquery', 'angular', 'paradox', 'headerController'
 			if (mode != currentMode) {
 				paradox.push(null, function() {
 					
-					require([mode + 'Controller', 'headerController', 'sidebarController'], function(controller, headerController, sidebarController) {
+					require([mode + 'Controller', 'appController'], function(controller, appController) {
 						
 						if (mode === 'searchList') {
-							headerController.aaa();
+							appController.header.aaa();
 						}
 						
 						// FIXME mobile 일때만 동작하도록 할것.. 어차피 모바일 용이지만..
-						sidebarController.collapse();
+						appController.sidebar.collapse();
 						
 						$v_currentMode = mode;
 						controller.show(data);
 					})
 				}, function() {
 					
-					require([currentMode + 'Controller', 'headerController', 'sidebarController'], function(controller, headerController, sidebarController) {
+					require([currentMode + 'Controller', 'appController'], function(controller, appController) {
 						
 						if ($v_currentMode === 'searchList') {
-							headerController.bbb();
+							appController.header.bbb();
 						}
 						
 						// FIXME mobile 일때만 동작하도록 할것.. 어차피 모바일 용이지만..
-						sidebarController.collapse();
+						appController.sidebar.collapse();
 						
 						$v_currentMode = currentMode;
 						controller.show();

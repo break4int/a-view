@@ -26,7 +26,7 @@
 		.box {margin-bottom:5px}
 	</style>
 </head>
-<body class="skin-yellow fixed">
+<body data-ng-controller="AppController as app" class="skin-yellow fixed">
 	<!-- header logo: style can be found in header.less -->
 	<!-- <header data-ng-controller="HeaderController as header" class="header">
 		<div class="logo">
@@ -75,7 +75,7 @@
 			</div>
 		</nav>
 	</header> -->
-	<header data-ng-controller="HeaderController as header" class="header">
+	<header class="header">
 		<!-- Header Navbar: style can be found in header.less -->
 		<nav class="navbar navbar-static-top" role="navigation">
 			<div class="logo">
@@ -114,55 +114,55 @@
 	<div class="wrapper row-offcanvas row-offcanvas-left">
 		
 		<!-- Left side column. contains the logo and sidebar -->
-            <aside data-ng-controller="SidebarController as sidebar"  class="left-side sidebar-offcanvas">
-                <!-- sidebar: style can be found in sidebar.less -->
-                <section class="sidebar">
-                    <!-- Sidebar user panel -->
-                    <div class="user-panel">
-                        <div class="pull-left image">
-                            <img src="./image/avatar04.png" class="img-circle" alt="User Image" />
-                        </div>
-                        <div class="pull-left info">
-                            <p>Hello, Jane</p>
-
-                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                        </div>
+        <aside class="left-side sidebar-offcanvas">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="./image/avatar04.png" class="img-circle" alt="User Image" />
                     </div>
-                    <!-- sidebar menu: : style can be found in sidebar.less -->
-                    <ul class="sidebar-menu">
-                        <li class="active">
-                            <a href="index.html">
-                                <i class="fa fa-building-o"></i> <span>가맹점</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="pages/widgets.html">
-                                <i class="fa fa-ticket"></i> <span>티켓</span> <small class="badge pull-right bg-green">new</small>
-                            </a>
-                        </li>
-                        <!-- 
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-bar-chart-o"></i>
-                                <span>Charts</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="pages/charts/morris.html"><i class="fa fa-angle-double-right"></i> Morris</a></li>
-                                <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Flot</a></li>
-                                <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline charts</a></li>
-                            </ul>
-                        </li>
-                         -->
-                    </ul>
-                </section>
-                <!-- /.sidebar -->
-            </aside>
+                    <div class="pull-left info">
+                        <p>Hello, Jane</p>
+
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                </div>
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu">
+                    <li class="active">
+                        <a href="index.html">
+                            <i class="fa fa-building-o"></i> <span>가맹점</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/widgets.html">
+                            <i class="fa fa-ticket"></i> <span>티켓</span> <small class="badge pull-right bg-green">new</small>
+                        </a>
+                    </li>
+                    <!-- 
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-bar-chart-o"></i>
+                            <span>Charts</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="pages/charts/morris.html"><i class="fa fa-angle-double-right"></i> Morris</a></li>
+                            <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Flot</a></li>
+                            <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline charts</a></li>
+                        </ul>
+                    </li>
+                     -->
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
 		
 		<!-- Right side column. Contains the navbar and content of the page -->
 		<aside data-ng-controller="partnerListController as partnerList" class="right-side" style="display:none">
 			<div class="row">
-				<div class="col-md-12" data-ng-repeat="item in array" data-partner-repeat-directive>
+				<div class="col-xs-12" data-ng-repeat="item in array" data-partner-repeat-directive>
 				
 					<!-- small box -->
 					<div class="small-box bg-aqua-x" data-ng-click="movePartnerDetailPage($event, item.id);">
@@ -202,97 +202,99 @@
 		
 		<aside data-ng-controller="searchListController as searchList" class="right-side" style="display:none">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-xs-12">
 					hello americano!!
 				</div>
 			</div>
 		</aside>
 		
 		<aside data-ng-controller="partnerDetailController as partnerDetail" class="right-side" style="display: none">
-			<ul class="nav nav-pills  nav-background" style="" id="myTab" >
-				<li class="active nav-justified1" ><a href="#Info" data-toggle="tab" class="">정보</a></li>
-				<li class="nav-justified1"><a href="#Menu" data-toggle="tab" class="">메뉴</a></li>
-				<li class="nav-justified1"><a href="#Map" data-toggle="tab" class="">지도</a></li>
-			</ul>
-			<div class="tab-content">
-				<!-- 정보 START-->
-				<div class="tab-pane active" id="Info">
-					<div class="row bs-example">
-						<div id="carousel-example-captions" class="carousel slide bs-docs-carousel-example">
-							<ol class="carousel-indicators">
-								<li data-target="#carousel-example-captions" data-slide-to="0" class="active"></li>
-								<li data-target="#carousel-example-captions" data-slide-to="1"></li>
-								<li data-target="#carousel-example-captions" data-slide-to="2"></li>
-					        </ol>
-					        <div class="carousel-inner">
-								<div class="item active">
-									<img data-src="holder.js/100%x200/auto/lava" src="data:image/png;base64,">
-								</div>
-								<div class="item">
-									<img data-src="holder.js/100%x200/auto/vine" src="data:image/png;base64,">
-								</div>
-								<div class="item">
-									<img data-src="holder.js/100%x200/auto/sky" src="data:image/png;base64,">
-									<div class="carousel-caption">
-										<h3>Third slide label</h3>
-										<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+			<div class="row">
+				<div class="col-xs-12">
+					<ul class="nav nav-pills  nav-background" style="" id="myTab" >
+						<li class="active nav-justified1" ><a href="#Info" data-toggle="tab" class="">정보</a></li>
+						<li class="nav-justified1"><a href="#Menu" data-toggle="tab" class="">메뉴</a></li>
+						<li class="nav-justified1"><a href="#Map" data-toggle="tab" class="">지도</a></li>
+					</ul>
+					<div class="tab-content">
+						<!-- 정보 START-->
+						<div class="tab-pane active" id="Info">
+							<div id="carousel-example-captions" class="carousel slide bs-docs-carousel-example">
+								<ol class="carousel-indicators">
+									<li data-target="#carousel-example-captions" data-slide-to="0" class="active"></li>
+									<li data-target="#carousel-example-captions" data-slide-to="1"></li>
+									<li data-target="#carousel-example-captions" data-slide-to="2"></li>
+						        </ol>
+						        <div class="carousel-inner">
+									<div class="item active">
+										<img data-src="holder.js/100%x200/auto/lava" src="data:image/png;base64,">
+									</div>
+									<div class="item">
+										<img data-src="holder.js/100%x200/auto/vine" src="data:image/png;base64,">
+									</div>
+									<div class="item">
+										<img data-src="holder.js/100%x200/auto/sky" src="data:image/png;base64,">
+										<div class="carousel-caption">
+											<h3>Third slide label</h3>
+											<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+										</div>
 									</div>
 								</div>
+								<a class="carousel-control" href="#carousel-example-captions" data-slide="prev">
+									<span class="icon-prev"></span>
+								</a>
+								<a class="carousel-control" style="right: 0; left: auto;" href="#carousel-example-captions" data-slide="next">
+									<span class="icon-next"></span>
+								</a>
 							</div>
-							<a class="left carousel-control" href="#carousel-example-captions" data-slide="prev">
-								<!-- 	<span class="icon-prev"></span> -->
-							</a>
-							<a class="right carousel-control" href="#carousel-example-captions" data-slide="next">
-								<!--  <span class="icon-next"></span> -->
-							</a>
+							<div class="">
+								<div class="bg-gray  text-center">
+									<span class="help-block">현재 <strong>{{partner.waitCount}}</strong>팀이 대기 중 입니다.</span>
+								</div>
+								<div class="col-xs-12 row" style="margin-left: 3px">
+									<div class="tb">
+										<div class="tb-row">
+											<div class="tb-cell-text" style="font-weight: 600">{{partner.name}}</div>
+										</div>
+										<div class="tb-row">
+											<div class="tb-cell-text">{{partner.description}}</div>
+										</div>
+									</div>
+									<div class="tb">
+										<div class="tb-row">
+											<div class="tb-cell tb-th">영업시간</div>
+											<div class="tb-cell">{{partner.operatingHour}}</div>
+										</div>
+										<div class="tb-row">
+											<div class="tb-cell tb-th">전화번호</div>
+											<div class="tb-cell">{{partner.telephone}}</div>
+										</div>
+										<div class="tb-row">
+											<div class="tb-cell tb-th">영업시간111</div>
+											<div class="tb-cell ">{{partner.description}}</div>
+										</div>
+									</div>
+								</div>
+								<!-- 정보 END-->
+							</div>
+						</div>
+						<div class="tab-pane" id="Menu">
+							<!-- 메뉴 START-->
+							<div class="col-md-12">
+								<h5 class="text-muted">메뉴</h5>
+									{{partner.menu}}<br>
+									{{jsonmsg}}
+							</div>
+							<!-- 메뉴 END-->
+						</div>
+						<div class="tab-pane" id="Map">
+							<!-- 지도 START-->
+							<div class="col-md-12">
+								<p>map Image</p>
+							</div>
+							<!-- 지도 END-->
 						</div>
 					</div>
-					<div class="">
-						<div class="bg-gray  text-center">
-							<span class="help-block">현재 <strong>{{partner.waitCount}}</strong>팀이 대기 중 입니다.</span>
-						</div>
-						<div class="col-xs-12 row" style="margin-left: 3px">
-							<div class="tb">
-								<div class="tb-row">
-									<div class="tb-cell-text" style="font-weight: 600">{{partner.name}}</div>
-								</div>
-								<div class="tb-row">
-									<div class="tb-cell-text">{{partner.description}}</div>
-								</div>
-							</div>
-							<div class="tb">
-								<div class="tb-row">
-									<div class="tb-cell tb-th">영업시간</div>
-									<div class="tb-cell">{{partner.operatingHour}}</div>
-								</div>
-								<div class="tb-row">
-									<div class="tb-cell tb-th">전화번호</div>
-									<div class="tb-cell">{{partner.telephone}}</div>
-								</div>
-								<div class="tb-row">
-									<div class="tb-cell tb-th">영업시간111</div>
-									<div class="tb-cell ">{{partner.description}}</div>
-								</div>
-							</div>
-						</div>
-						<!-- 정보 END-->
-					</div>
-				</div>
-				<div class="tab-pane" id="Menu">
-					<!-- 메뉴 START-->
-					<div class="col-md-12">
-						<h5 class="text-muted">메뉴</h5>
-							{{partner.menu}}<br>
-							{{jsonmsg}}
-					</div>
-					<!-- 메뉴 END-->
-				</div>
-				<div class="tab-pane" id="Map">
-					<!-- 지도 START-->
-					<div class="col-md-12">
-						<p>map Image</p>
-					</div>
-					<!-- 지도 END-->
 				</div>
 			</div>
 		</aside>

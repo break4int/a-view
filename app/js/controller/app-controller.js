@@ -3,6 +3,60 @@ define(['jquery', 'angular'], function($, angular) {
 	var $injector = angular.injector(['americano']);
 	var $global = $injector.get('global');
 	var $americano = $global.$americano;
+	var $_element = null;
+	
+	var _header = {
+		aaa : function() {
+			
+			$($_element).find('ul.nav.navbar-nav:first').hide().siblings().show();
+		},
+		bbb : function() {
+			
+			$($_element).find('ul.nav.navbar-nav:last').hide().siblings().show();
+		}
+	};
+	var _sidebar = {
+		toggle : function() {
+			
+			//If window is small enough, enable sidebar push menu
+			if ($(window).width() <= 992) {
+	            $('.row-offcanvas').toggleClass('active');
+	            $('.left-side').removeClass("collapse-left");
+	            $(".right-side").removeClass("strech");
+	            $('.row-offcanvas').toggleClass("relative");
+	        } else {
+	            //Else, enable content streching
+	            $('.left-side').toggleClass("collapse-left");
+	            $(".right-side").toggleClass("strech");
+	        }
+		},
+		expand : function() {
+			
+			if ($(window).width() <= 992) {
+	            $('.row-offcanvas').addClass('active');
+	            $('.left-side').removeClass("collapse-left");
+	            $(".right-side").removeClass("strech");
+	            $('.row-offcanvas').addClass("relative");
+	        } else {
+	            //Else, enable content streching
+	            $('.left-side').removeClass("collapse-left");
+	            $(".right-side").removeClass("strech");
+	        }
+		},
+		collapse : function() {
+			
+			if ($(window).width() <= 992) {
+	            $('.row-offcanvas').removeClass('active');
+	            $('.left-side').removeClass("collapse-left");
+	            $(".right-side").removeClass("strech");
+	            $('.row-offcanvas').removeClass("relative");
+	        } else {
+	            //Else, enable content streching
+	            $('.left-side').addClass("collapse-left");
+	            $(".right-side").addClass("strech");
+	        }
+		}
+	};
 	
 	/*
      * SIDEBAR MENU
@@ -74,8 +128,38 @@ define(['jquery', 'angular'], function($, angular) {
 
     }(jQuery));
 	
-    $americano.controller('SidebarController', function($scope) {
+	$americano.controller('AppController', ['$scope', '$element', function($scope, $element) {
 
+		$_element = $element;
+		
+		$scope.movePartnerList = function(){
+			
+			require('router').home();
+		}
+		
+		$scope.moveTicketListPage = function() {
+			
+			require('router').push('ticketList');
+		}
+		
+		$scope.moveSearchListPage = function(e) {
+			
+//			$(e.target).parents('ul.nav.navbar-nav').hide().siblings().show();
+			require('router').push('searchList');
+		}
+		
+		$scope.backSearchCancel = function(e) {
+			
+//			$(e.target).parents('ul.nav.navbar-nav').hide().siblings().show();
+			require('router').back();
+		}
+		
+		$scope.toggleSideBar = function(e) {
+			
+			e.preventDefault();
+			_sidebar.toggle();
+		}
+				
 		//Add hover support for touch devices
 	    $('.btn').bind('touchstart', function() {
 	        $(this).addClass('hover');
@@ -85,48 +169,11 @@ define(['jquery', 'angular'], function($, angular) {
 	    
 	    /* Sidebar tree view */
 	    $(".sidebar .treeview").tree();
-    });
-    
+	    
+    }]);
+	
 	return {
-		toggle : function() {
-			
-			//If window is small enough, enable sidebar push menu
-			if ($(window).width() <= 992) {
-	            $('.row-offcanvas').toggleClass('active');
-	            $('.left-side').removeClass("collapse-left");
-	            $(".right-side").removeClass("strech");
-	            $('.row-offcanvas').toggleClass("relative");
-	        } else {
-	            //Else, enable content streching
-	            $('.left-side').toggleClass("collapse-left");
-	            $(".right-side").toggleClass("strech");
-	        }
-		},
-		expand : function() {
-			
-			if ($(window).width() <= 992) {
-	            $('.row-offcanvas').addClass('active');
-	            $('.left-side').removeClass("collapse-left");
-	            $(".right-side").removeClass("strech");
-	            $('.row-offcanvas').addClass("relative");
-	        } else {
-	            //Else, enable content streching
-	            $('.left-side').removeClass("collapse-left");
-	            $(".right-side").removeClass("strech");
-	        }
-		},
-		collapse : function() {
-			
-			if ($(window).width() <= 992) {
-	            $('.row-offcanvas').removeClass('active');
-	            $('.left-side').removeClass("collapse-left");
-	            $(".right-side").removeClass("strech");
-	            $('.row-offcanvas').removeClass("relative");
-	        } else {
-	            //Else, enable content streching
-	            $('.left-side').addClass("collapse-left");
-	            $(".right-side").addClass("strech");
-	        }
-		}
+		header : _header,
+		sidebar : _sidebar
 	}
 });
