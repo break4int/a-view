@@ -51,7 +51,10 @@ requirejs.config({
 	waitSeconds : 3
 });
 
-requirejs(['jquery', 'angular', 'bootstrap', 'ngResource', 'ngTouch'], function($, angular, bootstrap) {
+requirejs(['jquery', 'angular', 'bootstrap', 'spinner', 'ngResource', 'ngTouch'], function($, angular, bootstrap, spinner) {
+	
+	spinner.setColor('#ffc000');
+	spinner.show();
 	
 	var $americano = angular.module('americano', ['ngResource', 'ngTouch']);
 	
@@ -59,7 +62,7 @@ requirejs(['jquery', 'angular', 'bootstrap', 'ngResource', 'ngTouch'], function(
 		$americano : $americano,
 		currentView : null
 	}).constant('config', {
-		BASE_URL : '/americano/api'
+		BASE_URL : localStorage.getItem('test') ? localStorage.getItem('test') + '/americano/api' : '/americano/api' 
 	});
 	
 	require(['router', 'serverBridge', 'restAPIFactory'], function(router, serverBridge) {
@@ -69,6 +72,7 @@ requirejs(['jquery', 'angular', 'bootstrap', 'ngResource', 'ngTouch'], function(
 		var onReady = function() {
 			var mode = (location.search != null && location.search.trim() != '') ? location.search.replace('?', '') : 'partnerList';
 			router.init(mode);
+			spinner.hide();
 		};
 		
 		if (localStorage.getItem('fingerprint')) {

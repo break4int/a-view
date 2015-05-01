@@ -8,7 +8,7 @@ define(['jquery', 'spinner'], function($, spinner) {
 			'Content-Type': 'application/json; charset=utf-8'
 		},
 		cache: false,
-		timeout: 3000
+		timeout: 10000
 	});
 	
 	spinner.setColor('#ffc000');
