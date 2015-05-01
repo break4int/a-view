@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" manifest="./app-cache.manifest">
 <head>
 
 	<meta http-equiv="Expires" content="-1">
@@ -328,7 +328,18 @@
 		<i class="fa fa-ticket fa-stack-1x fa-inverse" style="color:#3b1e1e;"></i>
 	</span>
 	
-	
+	<script>
+		window.applicationCache && window.addEventListener('load', function(e) {
+			window.applicationCache.addEventListener('updateready', function(e) {
+				if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+				// Browser downloaded a new app cache.
+					if (confirm('A new version of this site is available. Load it?')) {
+						window.location.reload();
+					}
+				}
+			}, false);
+		}, false);
+	</script>
 	<script data-main="./js/initialize" src="../asset/require-2.1.17/require.min.js"></script>
 </body>
 </html>

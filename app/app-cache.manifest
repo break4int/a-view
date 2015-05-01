@@ -1,0 +1,40 @@
+CACHE MANIFEST
+# Version 0
+
+CACHE:
+# Asset
+../asset/bootstrap-3.3.1/css/bootstrap.min.css
+../asset/font-awesome-4.3.0/css/font-awesome.min.css
+../asset/admin-lte-1.3/AdminLTE.css
+../asset/require-2.1.17/require.min.js
+../asset/bootstrap-3.3.1/fonts/glyphicons-halflings-regular.woff
+../asset/font-awesome-4.3.0/fonts/fontawesome-webfont.woff2?v=4.3.0
+../asset/jquery-1.11.1/jquery-1.11.1.min.js
+../asset/spinner-0.1.2/spinner-0.1.2.js
+../asset/angular-1.3.15/angular.min.js
+../asset/bootstrap-3.3.1/js/bootstrap.min.js
+../asset/angular-1.3.15/angular-resource.min.js
+../asset/angular-1.3.15/angular.min.js.map
+../asset/angular-1.3.15/angular-resource.min.js.map
+../asset/paradox-0.7.13/paradox-0.7.13.js
+../asset/holder/holder.js
+
+./css/a-app.css
+./image/avatar04.png
+./js/initialize.js
+./js/route/router.js
+./js/bridge/server-bridge.js
+./js/factory/restapi-factory.js
+./js/app-controller.js
+./js/controller/partner-list-controller.js
+./js/controller/partner-detail-controller.js
+./js/controller/search-list-controller.js
+./js/controller/ticket-list-controller.js
+
+http://fonts.googleapis.com/earlyaccess/nanumgothic.css
+http://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Bold.woff2
+http://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.woff2
+https://docs.angularjs.org/angular-touch.js
+
+NETWORK:
+*
