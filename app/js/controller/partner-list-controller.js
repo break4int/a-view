@@ -22,6 +22,7 @@ define(['jquery', 'angular', 'serverBridge', 'holder'], function($, angular, ser
 		
 		serverBridge.ajax({
 			url: '/partner',
+			type: 'GET',
 			data : {
 				lon : 12.345,
 				lat : 38.545
@@ -31,9 +32,6 @@ define(['jquery', 'angular', 'serverBridge', 'holder'], function($, angular, ser
 				    $scope.array = data;
 				});
 				holder.run();
-			},
-			error: function(jqXHR, status, error) {
-				console.log(jqXHR);
 			}
 		});
 		

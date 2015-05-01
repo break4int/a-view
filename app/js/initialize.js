@@ -62,11 +62,23 @@ requirejs(['jquery', 'angular', 'bootstrap', 'ngResource', 'ngTouch'], function(
 		BASE_URL : 'http://stg.abiyo.co.kr' + '/americano/api'
 	});
 	
-	require(['router', 'restAPIFactory'], function(router) {
+	require(['router', 'serverBridge', 'restAPIFactory'], function(router, serverBridge) {
 		
 		angular.bootstrap(document, ['americano']);
 		
-		var mode = (location.search != null && location.search.trim() != '') ? location.search.replace('?', '') : 'partnerList';
-		router.init(mode);
+		if (localStorage.getItem('fingerprint')) {
+			var mode = (location.search != null && location.search.trim() != '') ? location.search.replace('?', '') : 'partnerList';
+			router.init(mode);
+		} else {
+			serverBridge.ajax({
+				url: '/device/fingerprint',
+				type: 'GET',
+				success: function(data) {
+					localStorage.setItem('fingerprint', data);
+					var mode = (location.search != null && location.search.trim() != '') ? location.search.replace('?', '') : 'partnerList';
+					router.init(mode);
+				}
+			});
+		}
 	});
 });

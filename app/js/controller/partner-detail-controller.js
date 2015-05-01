@@ -74,9 +74,6 @@ define(['jquery', 'angular', 'serverBridge'], function($, angular, serverBridge)
 							v_scope.partner = data[0];
 						});
 						holder.run();
-					},
-					error: function(jqXHR, status, error) {
-						console.log(jqXHR);
 					}
 				});
 				
