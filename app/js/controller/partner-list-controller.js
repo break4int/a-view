@@ -1,4 +1,4 @@
-define(['jquery', 'angular', 'holder'], function($, angular, holder) {
+define(['jquery', 'angular', 'serverBridge', 'holder'], function($, angular, serverBridge, holder) {
 	
 	var $injector = angular.injector(['americano']);
 	var $global = $injector.get('global');
@@ -20,16 +20,33 @@ define(['jquery', 'angular', 'holder'], function($, angular, holder) {
 
 		$v_element = $element;
 		
-		restAPIFactory.partner.query({
-			lon : 12.345,
-			lat : 38.545
-		}, function(partnerList) {
-			
-			$scope.array = partnerList;
-//			holder.run();
-		}, function(error) {
-			console.log(error);
+		serverBridge.ajax({
+			url: '/partner',
+			data : {
+				lon : 12.345,
+				lat : 38.545
+			},
+			success:function(data, status, jqXHR) {
+				$scope.$apply(function(){
+				    $scope.array = data;
+				});
+				holder.run();
+			},
+			error: function(jqXHR, status, error) {
+				console.log(jqXHR);
+			}
 		});
+		
+//		restAPIFactory.partner.query({
+//			lon : 12.345,
+//			lat : 38.545
+//		}, function(partnerList) {
+//			
+//			$scope.array = partnerList;
+////			holder.run();
+//		}, function(error) {
+//			console.log(error);
+//		});
 		
 		$scope.movePartnerDetailPage = function(e, id) {
 			

@@ -11,6 +11,8 @@ requirejs.config({
 		'bootstrap' : '../../asset/bootstrap-3.3.1/js/bootstrap.min',
 		'paradox' : '../../asset/paradox-0.7.13/paradox-0.7.13',
 		'holder' : '../../asset/holder/holder',
+		'spinner' : '../../asset/spinner-0.1.2/spinner-0.1.2',
+		'serverBridge' : './bridge/server-bridge',
 		'restAPIFactory' : './factory/restapi-factory',
 		'router' : './route/router',
 		'appController' : './app-controller',
@@ -49,15 +51,15 @@ requirejs.config({
 	waitSeconds : 3
 });
 
-requirejs(['jquery', 'angular', 'bootstrap', 'ngResource', 'ngMockE2E', 'ngTouch'], function($, angular, bootstrap) {
+requirejs(['jquery', 'angular', 'bootstrap', 'ngResource', 'ngTouch'], function($, angular, bootstrap) {
 	
-	var $americano = angular.module('americano', ['ngResource', 'ngMockE2E', 'ngTouch']);
+	var $americano = angular.module('americano', ['ngResource', 'ngTouch']);
 	
 	$americano.constant('global', {
 		$americano : $americano,
 		currentView : null
 	}).constant('config', {
-		BASE_URL : '/americano/api'
+		BASE_URL : 'http://stg.abiyo.co.kr' + '/americano/api'
 	});
 	
 	require(['router', 'restAPIFactory'], function(router) {

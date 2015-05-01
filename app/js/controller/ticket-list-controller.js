@@ -8,21 +8,21 @@ define(['jquery', 'angular'], function($, angular) {
 	$americano.controller('ticketListController', ['$scope', '$element', '$http', 'restAPIFactory', function($scope, $element, $http, restAPIFactory) {
 		$v_element = $element;
 		
-		restAPIFactory.ticket.query({
-		}, function(ticketList) {
-			
-			$scope.ticketList = ticketList;
-		}, function(error) {
-			console.log(error);
-		});
-		
-		restAPIFactory.ticket.get({
-			ticketId : 1
-		}, function(ticket) {
-			$scope.ticket = ticket;
-		}, function(error) {
-			console.log(error);
-		});
+//		restAPIFactory.ticket.query({
+//		}, function(ticketList) {
+//			
+//			$scope.ticketList = ticketList;
+//		}, function(error) {
+//			console.log(error);
+//		});
+//		
+//		restAPIFactory.ticket.get({
+//			ticketId : 1
+//		}, function(ticket) {
+//			$scope.ticket = ticket;
+//		}, function(error) {
+//			console.log(error);
+//		});
 
 //		$scope.refreshNowNumber = function(partnerId, orderType) {
 //			$http({

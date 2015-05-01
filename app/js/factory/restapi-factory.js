@@ -1,11 +1,11 @@
-define(['jquery'], function($) {
+define(['jquery', 'angular'], function($, angular) {
 	
 	var $injector = angular.injector(['americano']);
 	var $global = $injector.get('global');
 	var config = $injector.get('config');
 	var $americano = $global.$americano;
 	
-	$americano.factory('restAPIFactory', ['$resource', '$httpBackend', 'config', function($resource, $httpBackend, config) {
+	$americano.factory('restAPIFactory', ['$resource', 'config', function($resource, config) {
 
 		var baseUrl = config.BASE_URL;
 		
@@ -37,7 +37,7 @@ define(['jquery'], function($) {
 		);
 		
 		
-		mockup($global, $httpBackend);
+		// mockup($global, $httpBackend);
 		
 		return {
 			partner : partner,

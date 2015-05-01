@@ -1,4 +1,4 @@
-define(['jquery', 'angular'], function($, angular) {
+define(['jquery', 'angular', 'serverBridge'], function($, angular, serverBridge) {
 	
 	var $injector = angular.injector(['americano']);
 	var $global = $injector.get('global');
@@ -66,13 +66,27 @@ define(['jquery', 'angular'], function($, angular) {
 				$global.currentView = $v_element;
 				$($v_element).show();
 			
-				v_restAPIFactory.partner.get({
-					partnerId : 1
-				}, function(partner) {
-					v_scope.partner = partner;
-				}, function(error) {
-					console.log(error);
+				serverBridge.ajax({
+					url: '/partner/' + id,
+					success:function(data, status, jqXHR) {
+						console.log(data[0]);
+						v_scope.$apply(function(){
+							v_scope.partner = data[0];
+						});
+						holder.run();
+					},
+					error: function(jqXHR, status, error) {
+						console.log(jqXHR);
+					}
 				});
+				
+//				v_restAPIFactory.partner.get({
+//					partnerId : 1
+//				}, function(partner) {
+//					v_scope.partner = partner;
+//				}, function(error) {
+//					console.log(error);
+//				});
 		}
 	}
 });

@@ -130,18 +130,18 @@
                     <div class="pull-left info">
                         <p>Hello, Jane</p>
 
-                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        <a href="javascript:void(0);"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
                     <li class="active">
-                        <a href="index.html">
+                        <a href="javascript:void(0);">
                             <i class="fa fa-building-o"></i> <span>가맹점</span>
                         </a>
                     </li>
                     <li>
-                        <a href="pages/widgets.html">
+                        <a href="javascript:void(0);">
                             <i class="fa fa-ticket"></i> <span>티켓</span> <small class="badge pull-right bg-green">new</small>
                         </a>
                     </li>
@@ -164,15 +164,27 @@
             <!-- /.sidebar -->
         </aside>
 		
+	<!-- 	id : i,
+					name : ('토다이' + i),
+					imageUrl : './image/avatar04.png',
+					telephone : '02-0000-0000',
+					operatingHour : '10-22',
+					description : 'AAA',
+					menu : '-----',
+					menuImageUrl : './image/avatar04.png',
+					place : '정자동',
+					waitCount : (Math.floor(Math.random() * 15) + 1) -->
+		
+		
 		<!-- Right side column. Contains the navbar and content of the page -->
 		<aside data-ng-controller="partnerListController as partnerList" class="right-side" style="display:none">
 			<div class="row">
 				<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" data-ng-repeat="item in array" data-partner-repeat-directive>
 				
 					<!-- small box -->
-					<div class="small-box bg-aqua-x" data-ng-click="movePartnerDetailPage($event, item.id);">
+					<div class="small-box bg-aqua-x" data-ng-click="movePartnerDetailPage($event, item.partnerId);">
 						<div class="inner" style="padding:0">
-							<div id="carousel-partner-captions-{{item.id}}-t" class="carousel slide">
+							<div id="carousel-partner-captions-{{item.partnerId}}-t" class="carousel slide">
 								
 						        <div class="carousel-inner">
 									<div class="item active">
@@ -184,13 +196,13 @@
 								</div>
 								
 								<div class="carousel-front-text" >
-									<div class="text-right">{{item.name}} </div>
-									<div class="text-right">{{item.place}} | {{item.description}}</div>
+									<div class="text-right">{{item.partnerName}} </div>
+									<div class="text-right">{{item.introduction}}</div>
 								</div>
-								<a class="carousel-control" href="#carousel-partner-captions-{{item.id}}-t" data-slide="prev">
+								<a class="carousel-control" href="#carousel-partner-captions-{{item.partnerId}}-t" data-slide="prev">
 									<span class="icon-prev"></span>
 								</a>
-								<a class="carousel-control" style="right: 0; left: auto;" href="#carousel-partner-captions-{{item.id}}-t" data-slide="next">
+								<a class="carousel-control" style="right: 0; left: auto;" href="#carousel-partner-captions-{{item.partnerId}}-t" data-slide="next">
 									<span class="icon-next"></span>
 								</a>
 							</div>
@@ -259,7 +271,7 @@
 								<div class="col-xs-12 row" style="margin-left: 3px">
 									<div class="tb">
 										<div class="tb-row">
-											<div class="tb-cell-text" style="font-weight: 600">{{partner.name}}</div>
+											<div class="tb-cell-text" style="font-weight: 600">{{partner.partnerName}}</div>
 										</div>
 										<div class="tb-row">
 											<div class="tb-cell-text">{{partner.description}}</div>
@@ -268,11 +280,11 @@
 									<div class="tb">
 										<div class="tb-row">
 											<div class="tb-cell tb-th">영업시간</div>
-											<div class="tb-cell">{{partner.operatingHour}}</div>
+											<div class="tb-cell">{{partner.openTime}} - {{partner.closeTime}}</div>
 										</div>
 										<div class="tb-row">
 											<div class="tb-cell tb-th">전화번호</div>
-											<div class="tb-cell">{{partner.telephone}}</div>
+											<div class="tb-cell">{{partner.phoneNumber}}</div>
 										</div>
 										<div class="tb-row">
 											<div class="tb-cell tb-th">영업시간111</div>
