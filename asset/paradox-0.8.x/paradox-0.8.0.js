@@ -73,6 +73,8 @@
 //    		//console.error('등록되지 않은 state index입니다.');
 //    	}
     	
+    	currStateIndex = e.state.index;
+    	
     	console.log(e.state);
     	isFunction(paradox.popstateListener) && paradox.popstateListener.call(this, e.state);
     	
@@ -82,6 +84,9 @@
 	 * Class paradox
 	 */
     var paradox = {
+    		getCurrentStateIndex: function() {
+    			return currStateIndex;
+    		},
     		/**
     		 * path, [data], callback
     		 */

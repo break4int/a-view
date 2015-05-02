@@ -7,7 +7,7 @@
 
 	var styleString = '';
 //	styleString += '<style>';
-	styleString += '.spinner-wrap { z-index:999; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.3); }';
+	styleString += '.spinner-wrap { z-index:9999; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.3); }';
 	styleString += '.spinner { position:relative; top:50%; margin:-25px auto 0; width:100px; height:50px; text-align:center; font-size: 10px; }';
 	styleString += '.spinner > div { background-color:#333; height: 100%; width: 9px; display: inline-block; -webkit-animation: stretchdelay 1.2s infinite ease-in-out; animation: stretchdelay 1.2s infinite ease-in-out; }';
 	styleString += '.spinner .rect2 { -webkit-animation-delay:-1.1s; animation-delay:-1.1s; }';

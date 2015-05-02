@@ -134,12 +134,12 @@
                 </div>
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
-                    <li class="active">
+                    <li class="active" data-ng-click="moveHome();">
                         <a href="javascript:void(0);">
                             <i class="fa fa-building-o"></i> <span>가맹점</span>
                         </a>
                     </li>
-                    <li>
+                    <li  data-ng-click="move('ticketList');">
                         <a href="javascript:void(0);">
                             <i class="fa fa-ticket"></i> <span>티켓</span> <small class="badge pull-right bg-green">new</small>
                         </a>
@@ -322,7 +322,7 @@
 			</div>
 		</aside>
 	</div>
-	<span class="fa-stack fa-2x" style="position:fixed; bottom:20px; right:20px; font-size: 2.5em;">
+	<span data-ng-click="move('ticketList');" class="fa-stack fa-2x" style="position:fixed; bottom:20px; right:20px; font-size: 2.5em;">
 		<i class="fa fa-circle fa-stack-2x" style="color: /*#ffe303*/#ffc000;"></i>
 		<i class="fa fa-ticket fa-stack-1x fa-inverse" style="color:#3b1e1e;"></i>
 	</span>
