@@ -9,7 +9,7 @@ requirejs.config({
 		'ngMockE2E' : '../../asset/angular-1.3.15/angular-mocks',
 		'ngTouch' : 'https://docs.angularjs.org/angular-touch',//'../../asset/angular-1.3.15/angular-touch',
 		'bootstrap' : '../../asset/bootstrap-3.3.1/js/bootstrap.min',
-		'paradox' : '../../asset/paradox-0.7.13/paradox-0.7.13',
+		'paradox' : '../../asset/paradox-0.7.13/paradox-0.8.0',
 		'holder' : '../../asset/holder/holder',
 		'spinner' : '../../asset/spinner-0.1.2/spinner-0.1.2',
 		'serverBridge' : './bridge/server-bridge',
@@ -43,9 +43,6 @@ requirejs.config({
 		},
 		'holder' : {
 			exports:'Holder'
-		},
-		'paradox' : {
-			exports:'paradox'
 		}
 	},
 	waitSeconds : 3
@@ -70,8 +67,7 @@ requirejs(['jquery', 'angular', 'bootstrap', 'spinner', 'ngResource', 'ngTouch']
 		angular.bootstrap(document, ['americano']);
 		
 		var onReady = function() {
-			var mode = (location.search != null && location.search.trim() != '') ? location.search.replace('?', '') : 'partnerList';
-			router.init(mode);
+			router.init();
 			spinner.hide();
 		};
 		

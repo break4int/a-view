@@ -20,7 +20,8 @@ CACHE:
 ../asset/holder/holder.js
 
 ./css/a-app.css
-./image/avatar04.png
+./image/avatar_small.png
+
 ./js/initialize.js
 ./js/route/router.js
 ./js/bridge/server-bridge.js

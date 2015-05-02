@@ -50,7 +50,8 @@ body > .header > .logo >  .right-header {
   padding-right: 15px;
   font-size: 15px;
 }
- .label-black {
+
+.label-black {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
@@ -69,6 +70,10 @@ body > .header > .logo >  .right-header {
 }
 
 @media screen and (max-width: 560px) {
+  .row-offcanvas {
+		left:0px;
+	}
+	
   body.fixed > .wrapper,
   body.fixed .sidebar-offcanvas {
     margin-top: 50px !important; 

@@ -9,13 +9,37 @@ define(['jquery', 'angular', 'paradox', 'appController'
 	var $v_currentMode = null;
 	
 	return {
-		init : function(mode) {
+		init : function() {
 			
-			paradox.ready(null, function() {
+			var mode = (location.search != null && location.search.trim() != '') ? location.search.replace('?', '') : 'partnerList';
+			mode = mode || './template/partner-list.html';
+			
+			paradox.popstateListener = function(state) {
+				console.log('router');
+				console.log(state);
+				
+				require([state.path + 'Controller', 'appController'], function(controller, appController) {
+					
+					if ($v_currentMode === 'searchList') {
+						appController.header.bbb();
+					}
+					
+					// FIXME mobile 일때만 동작하도록 할것.. 어차피 모바일 용이지만..
+					appController.sidebar.collapse();
+					
+					$v_currentMode = state.path;
+					controller.show();
+				})
+			};
+			
+			paradox.ready(mode || './template/partner-list.html', null, function() {
 				
 				$v_currentMode = mode; 
 				require([mode + 'Controller'], function(controller) {
 					controller.show();
+					
+					// test code
+					paradox.replace(mode, null)
 				})
 			});			
 		},
@@ -24,7 +48,7 @@ define(['jquery', 'angular', 'paradox', 'appController'
 			var currentMode = $v_currentMode;
 			
 			if (mode != currentMode) {
-				paradox.push(null, function() {
+				paradox.push(mode, null, function() {
 					
 					require([mode + 'Controller', 'appController'], function(controller, appController) {
 						

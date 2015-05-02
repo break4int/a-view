@@ -61,8 +61,8 @@
 			}
 	}
 	
-	if ( typeof define === "function" && define.amd ) {
-		define( "spinner", [], function() {
+	if (typeof define === "function" && define.amd) {
+		define("spinner", [], function() {
 			return spinner;
 		});
 	}
