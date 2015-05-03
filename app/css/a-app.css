@@ -70,9 +70,9 @@ body > .header > .logo >  .right-header {
 }
 
 @media screen and (max-width: 560px) {
-  .row-offcanvas {
+  /* .row-offcanvas {
 		left:0px;
-	}
+	} */
 	
   body.fixed > .wrapper,
   body.fixed .sidebar-offcanvas {

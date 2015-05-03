@@ -18,6 +18,7 @@ CACHE:
 ../asset/angular-1.3.15/angular-resource.min.js.map
 ../asset/paradox-0.8.x/paradox-0.8.0.js
 ../asset/holder/holder.js
+../asset/angular-1.3.15/angular-touch
 
 ./css/a-app.css
 ./image/avatar_small.png
@@ -35,7 +36,6 @@ CACHE:
 http://fonts.googleapis.com/earlyaccess/nanumgothic.css
 http://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Bold.woff2
 http://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.woff2
-https://docs.angularjs.org/angular-touch.js
 
 NETWORK:
 *

@@ -48,41 +48,44 @@ requirejs.config({
 	waitSeconds : 3
 });
 
-requirejs(['jquery', 'angular', 'bootstrap', 'spinner', 'ngResource', 'ngTouch'], function($, angular, bootstrap, spinner) {
-	
+requirejs(['spinner'], function(spinner) {
+
 	spinner.setColor('#ffc000');
 	spinner.show();
-	
-	var $americano = angular.module('americano', ['ngResource', 'ngTouch']);
-	
-	$americano.constant('global', {
-		$americano : $americano,
-		currentView : null
-	}).constant('config', {
-		BASE_URL : localStorage.getItem('test') ? localStorage.getItem('test') + '/americano/api' : '/americano/api' 
-	});
-	
-	require(['router', 'serverBridge', 'restAPIFactory'], function(router, serverBridge) {
+
+	require(['jquery', 'angular', 'bootstrap', 'ngResource', 'ngTouch'], function($, angular, bootstrap) {
 		
-		angular.bootstrap(document, ['americano']);
+		var $americano = angular.module('americano', ['ngResource', 'ngTouch']);
 		
-		var onReady = function() {
-			router.init();
-			spinner.hide();
-		};
+		$americano.constant('global', {
+			$americano : $americano,
+			currentView : null
+		}).constant('config', {
+			BASE_URL : localStorage.getItem('test') ? localStorage.getItem('test') + '/americano/api' : '/americano/api' 
+		});
 		
-		if (localStorage.getItem('fingerprint')) {
+		require(['serverBridge', 'restAPIFactory'], function(serverBridge) {
 			
-			onReady();
-		} else {
-			serverBridge.ajax({
-				url: '/device/fingerprint',
-				type: 'GET',
-				success: function(data) {
-					localStorage.setItem('fingerprint', data);
-					onReady();
-				}
-			});
-		}
+			var onReady = function() {
+				require(['router'], function(router) {
+					angular.bootstrap(document, ['americano']);
+					spinner.hide();
+				});
+			};
+			
+			// TODO Device 인증과정
+			if (localStorage.getItem('fingerprint')) {
+				onReady();
+			} else {
+				serverBridge.ajax({
+					url: '/device/fingerprint',
+					type: 'GET',
+					success: function(data) {
+						localStorage.setItem('fingerprint', data);
+						onReady();
+					}
+				});
+			}
+		});
 	});
 });

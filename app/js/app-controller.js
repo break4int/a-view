@@ -142,16 +142,6 @@ define(['jquery', 'angular'], function($, angular) {
 			require('router').push(next);
 		}
 		
-		$scope.movePartnerList = function(){
-			
-			require('router').home();
-		}
-		
-		$scope.moveTicketListPage = function() {
-			
-			require('router').push('ticketList');
-		}
-		
 		$scope.moveSearchListPage = function(e) {
 			
 //			$(e.target).parents('ul.nav.navbar-nav').hide().siblings().show();
